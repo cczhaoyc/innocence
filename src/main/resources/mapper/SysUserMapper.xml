@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.suxia.innocence.system.sys.mapper.SysUserMapper">
+
+    <resultMap id="sysUserResultMap" type="com.suxia.innocence.system.sys.domain.SysUser">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="password" column="password"/>
+        <result property="mobile" column="mobile"/>
+        <result property="administrator" column="is_administrator"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="all_column">
+        id,user_name,nick_name,password,mobile,is_administrator,create_user,create_date,update_user,update_date,remark
+    </sql>
+
+    <sql id="all_property">
+        #{id},#{userName},#{nickName},#{password},#{mobile},#{administrator},#{createUser},#{createDate},#{updateUser},#{updateDate},#{remark}
+    </sql>
+
+    <!-- 新增用户-->
+    <insert id="addSysUser" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_user (
+        <include refid="all_column"/>
+        )
+        value (
+        <include refid="all_property"/>
+        )
+    </insert>
+
+    <!--更新用户-->
+    <update id="updateSysUser" parameterType="com.suxia.innocence.system.sys.domain.SysUser">
+        update sys_user
+        <set>
+            <if test="nickName != null and nickName !=''">
+                nick_name = #{nickName},
+            </if>
+            <if test="mobile != null and mobile !=''">
+                mobile = #{mobile},
+            </if>
+            <if test="administrator != null">
+                is_administrator = #{administrator},
+            </if>
+            <if test="remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--根据id数组删除一个或多个用户-->
+    <delete id="deleteSysUsers">
+        delete from sys_user
+        where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--根据id获取用户-->
+    <select id="getSysUserById" parameterType="java.lang.Long"
+            resultMap="sysUserResultMap">
+        select
+        <include refid="all_column"/>
+        from sys_user
+        where id=#{id}
+    </select>
+
+</mapper>
