@@ -1,5 +1,6 @@
 package com.suxia.innocence.system.sys.service;
 
+import com.suxia.innocence.system.exception.base.ServiceValidationException;
 import com.suxia.innocence.system.sys.domain.SysUser;
 
 /**
@@ -26,7 +27,7 @@ public interface SysUserService {
      * @param sysUser
      * @return
      */
-    SysUser updateSysUser(SysUser sysUser);
+    SysUser updateSysUser(SysUser sysUser) throws ServiceValidationException;
 
 
     /**

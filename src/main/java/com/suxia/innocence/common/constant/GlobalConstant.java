@@ -8,5 +8,5 @@ package com.suxia.innocence.common.constant;
  */
 public class GlobalConstant {
 
-    public static final String FULL_PINYIN = "fullPinyin";
+    public static final String SESSION_ID = "SESSION_ID";
 }

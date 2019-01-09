@@ -1,10 +1,16 @@
 package com.suxia.innocence.system.sys.service.impl;
 
+import com.suxia.innocence.common.util.ValidationUtil;
+import com.suxia.innocence.system.exception.base.BusinessValidationException;
+import com.suxia.innocence.system.exception.base.ServiceValidationException;
 import com.suxia.innocence.system.sys.domain.SysUser;
 import com.suxia.innocence.system.sys.mapper.SysUserMapper;
 import com.suxia.innocence.system.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import javax.print.attribute.standard.ReferenceUriSchemesSupported;
 
 /**
  * @author cczhaoyc@163.com
@@ -15,12 +21,26 @@ import org.springframework.stereotype.Service;
 @Service("sysUserService")
 public class SysUserServiceImpl implements SysUserService {
 
-    @Autowired
+    @Resource
     private SysUserMapper sysUserMapper;
 
     @Override
     public SysUser addSysUser(SysUser sysUser) {
-        return null;
+        if (sysUser == null) {
+            throw new BusinessValidationException("参数为空");
+        }
+        if (ValidationUtil.isEmpty(sysUser.getUserName())) {
+            throw new BusinessValidationException("参数登录用户名为空");
+        }
+        if (ValidationUtil.isEmpty(sysUser.getPassword())) {
+            throw new BusinessValidationException("参数密码为空");
+        }
+        try {
+            sysUserMapper.addSysUser(sysUser);
+            return sysUser;
+        } catch (Exception e) {
+            throw new ServiceValidationException("新增用户出错!", e);
+        }
     }
 
     @Override

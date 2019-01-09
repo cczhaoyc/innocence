@@ -6,7 +6,7 @@ package com.suxia.innocence.system.sys.constant;
  * @date Created in 2019年01月08 15:18 星期二
  * @description TODO 用户表业务相关常量
  */
-public class SysUserValue {
+public class SysUserCode {
 
     /**
      * 是否超级管理员（0 否，1 是）
