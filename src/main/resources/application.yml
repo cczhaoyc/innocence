@@ -15,16 +15,24 @@ spring:
       max-file-size: 30Mb
       max-request-size: 100Mb
   jackson:
-    date-format: yyyy-MM-dd hh:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     default-property-inclusion: NON_NULL
+  mvc:
+    servlet:
+      load-on-startup: 1
+    view:
+      prefix: /WEB-INF/templates/jsp/
+      suffix: .jsp
   thymeleaf:
-    prefix: classpath:/templates/
+    prefix: classpath:/WEB-INF/templates/thymeleaf/
     suffix: .html
     mode: HTML5
     encoding: UTF-8
     content-type: text/html
+    #线上设置为true
     cache: false
+    enabled: true
   devtools:
     restart:
       enabled: true
@@ -62,8 +70,10 @@ server:
   tomcat:
     uri-encoding: utf-8
 mybatis:
-  type-aliases-package: com.suxia.abandon.domain
-  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:/mybatis-config.xml
+  check-config-location: true
+  type-aliases-package: com.suxia.innocence.system.sys.domain;com.suxia.innocence.system.sys.vo
+  mapper-locations: classpath:/WEB-INF/mapper/*Mapper.xml
 pagehelper:
   helperDialect: mysql
   reasonable: true

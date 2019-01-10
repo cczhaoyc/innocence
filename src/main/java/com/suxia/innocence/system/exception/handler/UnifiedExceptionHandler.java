@@ -1,6 +1,5 @@
 package com.suxia.innocence.system.exception.handler;
 
-import com.suxia.innocence.system.exception.base.BaseRuntimeException;
 import com.suxia.innocence.system.exception.base.BusinessValidationException;
 import com.suxia.innocence.system.exception.base.ServiceValidationException;
 import com.suxia.innocence.system.exception.constant.ExceptionCode;
@@ -20,8 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class UnifiedExceptionHandler {
 
-    private static Logger logger = LoggerFactory
-            .getLogger(UnifiedExceptionHandler.class);
+    private static Logger LOG = LoggerFactory.getLogger(UnifiedExceptionHandler.class);
 
     /**
      * 拦截捕捉自定义异常
@@ -32,7 +30,6 @@ public class UnifiedExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public ExceptionResult handlerException(Exception ex) {
-
         if (ex instanceof BusinessValidationException) {
             return dealBusinessValidationException(ex);
         } else if (ex instanceof ServiceValidationException) {
@@ -40,11 +37,10 @@ public class UnifiedExceptionHandler {
         } else {
             return dealUnknownException(ex);
         }
-
     }
 
     private ExceptionResult dealBusinessValidationException(Exception ex) {
-        logger.error("intercept exception [errorCode="
+        LOG.error("intercept exception [errorCode="
                 + ExceptionCode.BUSINESS_ERR_CODE + "]:", ex);
         ExceptionResult result = new ExceptionResult();
         result.setErrCode(ExceptionCode.BUSINESS_ERR_CODE);
@@ -54,7 +50,7 @@ public class UnifiedExceptionHandler {
     }
 
     private ExceptionResult dealServiceValidationException(Exception ex) {
-        logger.error("intercept exception [errorCode="
+        LOG.error("intercept exception [errorCode="
                 + ExceptionCode.SERVICE_ERR_CODE + "]:", ex);
         ExceptionResult result = new ExceptionResult();
         result.setErrCode(ExceptionCode.SERVICE_ERR_CODE);
@@ -64,7 +60,7 @@ public class UnifiedExceptionHandler {
     }
 
     private ExceptionResult dealUnknownException(Exception ex) {
-        logger.error("intercept exception [errorCode="
+        LOG.error("intercept exception [errorCode="
                 + ExceptionCode.UNKNOWN_ERR_CODE + "]:", ex);
         ExceptionResult result = new ExceptionResult();
         result.setErrCode(ExceptionCode.UNKNOWN_ERR_CODE);

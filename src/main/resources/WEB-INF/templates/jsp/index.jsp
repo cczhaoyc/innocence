@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <title>苏夏未来</title>
 </head>
 <body>

@@ -1,9 +1,12 @@
 package com.suxia.innocence.system.sys.controller;
 
+import com.suxia.innocence.common.response.Response;
+import com.suxia.innocence.common.response.SuccessResponse;
 import com.suxia.innocence.system.sys.domain.SysUser;
 import com.suxia.innocence.system.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,16 +32,14 @@ public class SysUserController {
      */
     @RequestMapping("/addSysUser")
     @ResponseBody
-    public SysUser addSysUser() {
-        SysUser sysUser = new SysUser();
-        sysUser.setUserName("苏夏");
-        sysUser.setPassword("123456");
-        sysUser.setAdministrator(Boolean.TRUE);
-        sysUser.setCreateUser("admin");
-        sysUser.setCreateDate(new Date());
-        return sysUserService.addSysUser(sysUser);
+    public Response addSysUser(@ModelAttribute("sysUser") SysUser sysUser) {
+        return new SuccessResponse(sysUserService.addSysUser(sysUser));
     }
 
+    @RequestMapping("/addSysUserView.html")
+    public String addSysUserView() {
+        return "sysuser/addSysUserView";
+    }
 
 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.print.attribute.standard.ReferenceUriSchemesSupported;
+import java.util.Date;
 
 /**
  * @author cczhaoyc@163.com
@@ -36,6 +37,8 @@ public class SysUserServiceImpl implements SysUserService {
             throw new BusinessValidationException("参数密码为空");
         }
         try {
+            sysUser.setCreateUser("admin");
+            sysUser.setCreateDate(new Date());
             sysUserMapper.addSysUser(sysUser);
             return sysUser;
         } catch (Exception e) {
