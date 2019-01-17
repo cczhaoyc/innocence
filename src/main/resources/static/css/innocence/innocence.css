@@ -1,0 +1,76 @@
+/*按钮样式*/
+.i-button {
+    /*消除button的默认样式*/
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent; /*自定义边框*/
+    outline: none; /*消除默认点击蓝色边框效果*/
+}
+
+.i-button { /* 按钮美化 */
+    width: 270px; /* 宽度 */
+    height: 40px; /* 高度 */
+    border-width: 0px; /* 边框宽度 */
+    border-radius: 3px; /* 边框半径 */
+    background: #1E90FF; /* 背景颜色 */
+    cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+    outline: none; /* 不显示轮廓线 */
+    font-family: Microsoft YaHei; /* 设置字体 */
+    color: white; /* 字体颜色 */
+    font-size: 17px; /* 字体大小 */
+}
+
+.i-button:hover { /* 鼠标移入按钮范围时改变颜色 */
+    background: #5599FF;
+}
+
+/*a标签的样式*/
+a {
+    text-decoration: none
+}
+
+a:link { /* 未被访问的链接 */
+    background: #B2FF99;
+    color: gray;
+}
+
+
+a:visited { /* 已被访问的链接 */
+    background: #FFFF85;
+    font-family: Microsoft YaHei; /* 设置字体 */
+    color: blue;
+}
+
+
+a:hover { /* 鼠标指针移动到链接上 */
+    background: #78F3DC;
+}
+
+
+a:active { /* 正在被点击的链接 */
+    background: #78F3DC;
+}
+
+/*input样式*/
+input[type="text"], input[type="password"] {
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.4em;
+    border-radius: 4px;
+    border: 1px solid #c8cccf;
+    color: #6a6f77;
+    -web-kit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 10em;
+    height: 1.5em;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border: 1px solid #07B912;
+}
+
+
