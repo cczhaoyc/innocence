@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author cczhaoyc@163.com
  * @version v_1.0.0
  * @date Created in 2019年01月08 14:15 星期二
- * @description TODO 基础实体类
+ * @description TODO 基础实体类,即所有表共有字段
  */
 public class BaseDomain implements Serializable {
 

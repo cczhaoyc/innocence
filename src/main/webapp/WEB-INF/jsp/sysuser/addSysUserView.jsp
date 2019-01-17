@@ -1,9 +1,13 @@
+﻿﻿
+<%@ page language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8"/>
+    <title>苏夏未来</title>
 </head>
-<body>
+<body style="text-align: center;color: #00B83F">
 <div >
     <form id="maintainForm" action="/sys/addSysUser" method="post">
         <div>
@@ -34,6 +38,3 @@
 </div>
 </body>
 </html>
-<script type="text/javascript">
-
-</script>

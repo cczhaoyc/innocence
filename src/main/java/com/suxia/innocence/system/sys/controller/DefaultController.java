@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author cczhaoyc@163.com
  * @version v_1.0.0
  * @date Created in 2019年01月10 14:10 星期四
- * @description TODO
+ * @description TODO 系统首页
  */
 @Configuration
 public class DefaultController {

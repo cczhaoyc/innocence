@@ -36,7 +36,7 @@ public class SysUserController {
         return new SuccessResponse(sysUserService.addSysUser(sysUser));
     }
 
-    @RequestMapping("/addSysUserView.html")
+    @RequestMapping("/addSysUserView")
     public String addSysUserView() {
         return "sysuser/addSysUserView";
     }
