@@ -8,7 +8,7 @@
 }
 
 .i-button { /* 按钮美化 */
-    width: 270px; /* 宽度 */
+    width: 300px; /* 宽度 */
     height: 40px; /* 高度 */
     border-width: 0px; /* 边框宽度 */
     border-radius: 3px; /* 边框半径 */
@@ -70,7 +70,7 @@ input[type="text"], input[type="password"] {
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
-    border: 1px solid #07B912;
+    border: 1px solid #1E90FF;
 }
 
 

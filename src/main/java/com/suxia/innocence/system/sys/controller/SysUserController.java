@@ -38,7 +38,7 @@ public class SysUserController {
 
     @RequestMapping("/addSysUserView")
     public String addSysUserView() {
-        return "sysuser/addSysUser";
+        return "sysuser/sysUserAdd";
     }
 
 

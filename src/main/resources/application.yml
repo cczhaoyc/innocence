@@ -30,7 +30,7 @@ spring:
       exclude: src/main/resources/static
       additional-paths: src/main/java
   redis:
-    database: 0
+    database: 1
     host: 127.0.0.1
     port: 6379
     timeout: 0
@@ -57,7 +57,7 @@ spring:
       log-abandoned: true
       filters: mergeStat
 server:
-  port: 9999
+  port: 80
   tomcat:
     uri-encoding: utf-8
 mybatis:
@@ -71,7 +71,7 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 logging:
-  path: ../logs
+  path: ../logs/innocence
   level:
-    root: error
-    org.springframework: info
+    com.suxia.innocence.system: debug
+

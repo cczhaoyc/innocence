@@ -45,4 +45,12 @@ public interface SysUserService {
      * @return
      */
     SysUser getSysUserById(Long id);
+
+    /**
+     * 根据用户名获取用户信息
+     *
+     * @param userName
+     * @return
+     */
+    SysUser getSysUserByUserName(String userName);
 }

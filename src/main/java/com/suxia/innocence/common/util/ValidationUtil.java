@@ -14,11 +14,36 @@ public class ValidationUtil {
      * @param parameter
      * @return
      */
-    public static Boolean isEmpty(String parameter) {
+    public static Boolean isEmptyString(String parameter) {
         if (null == parameter || "".equals(parameter.trim())) {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
+    /**
+     * 验证数组是否为空
+     *
+     * @param objects
+     * @return
+     */
+    public static Boolean isEmptyArray(Object[] objects) {
+        if (null == objects || objects.length == 0) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    /**
+     * 验证对象是否为空
+     *
+     * @param object
+     * @return
+     */
+    public static Boolean isEmptyObject(Object object) {
+        if (null == object) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
 }

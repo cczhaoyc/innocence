@@ -73,4 +73,13 @@
         where id=#{id}
     </select>
 
+    <!--根据用户名获取用户信息-->
+    <select id="getSysUserByUserName"
+            resultMap="sysUserResultMap">
+        select
+        <include refid="all_column"/>
+        from sys_user
+        where user_name=#{userName}
+    </select>
+
 </mapper>
