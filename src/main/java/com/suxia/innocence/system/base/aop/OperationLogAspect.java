@@ -105,7 +105,6 @@ public class OperationLogAspect {
         Object result = null;// result的值就是被拦截方法的返回值
         try {
             result = pjp.proceed();
-
         } catch (Throwable t) {
             errMsg = t.getMessage();
             success = LoginConstant.ERROR;

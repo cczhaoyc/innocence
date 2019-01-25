@@ -21,7 +21,7 @@ public class RedisService {
     /**
      * 默认过期时长，单位：秒
      */
-    public static final Long DEFAULT_EXPIRE = 2 * 60 * 60L;
+    public static final Long DEFAULT_EXPIRE = 2 * 60 * 60 * 1000L;
 
     /**
      * 不设置过期时长
@@ -37,7 +37,7 @@ public class RedisService {
     public void setForStringWithTimeout(Object key, Object value) {
         StringBuilder baseKey = new StringBuilder();
         baseKey.append("sys:").append(key);
-        redisTemplate.opsForValue().set(baseKey, value, DEFAULT_EXPIRE, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(baseKey, value, DEFAULT_EXPIRE, TimeUnit.MILLISECONDS);
     }
 
     public Object getForString(Object key) {

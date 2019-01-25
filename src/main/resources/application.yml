@@ -3,6 +3,9 @@
 # Spring基础配置
 #
 ###################################################
+project:
+  loginfilter:
+    exclude: /;/login;/loginManager/login;
 spring:
   application:
     name: innocence

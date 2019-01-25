@@ -34,13 +34,6 @@ public class CookieUtil {
         return "";
     }
 
-    private static String getValueFromHeader(String cookieName, HttpServletRequest request) {
-        if (ValidationUtil.isEmptyObject(request) || ValidationUtil.isEmptyString(cookieName)) {
-            return "";
-        }
-        return request.getHeader(cookieName);
-    }
-
     /**
      * 在Cookie中存值
      *

@@ -30,4 +30,13 @@ public interface LoginService {
      * @param response
      */
     void logout(HttpServletRequest request, HttpServletResponse response);
+
+    /**
+     * 验证用户是否已登录
+     *
+     * @param response
+     * @param request
+     * @return
+     */
+    boolean isLogin(HttpServletRequest request, HttpServletResponse response);
 }

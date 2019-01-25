@@ -1,5 +1,6 @@
 package com.suxia.innocence.system.base.service.impl;
 
+import com.sun.org.apache.regexp.internal.RE;
 import com.suxia.innocence.common.constant.GlobalConstant;
 import com.suxia.innocence.common.util.CookieUtil;
 import com.suxia.innocence.common.util.IpAddressUtil;
@@ -12,12 +13,15 @@ import com.suxia.innocence.system.exception.base.BusinessValidationException;
 import com.suxia.innocence.system.exception.base.ServiceValidationException;
 import com.suxia.innocence.system.sys.domain.SysUser;
 import com.suxia.innocence.system.sys.service.SysUserService;
+import org.apache.catalina.User;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -87,20 +91,6 @@ public class LoginServiceImpl implements LoginService {
         redisService.delete(sessionId);
     }
 
-    /* */
-
-    /**
-     * 缓存Session的Key
-     *
-     * @param
-     * @return
-     *//*
-    private String getSessionKey(String userName) {
-        StringBuilder builder = new StringBuilder();
-        return builder.append(GlobalConstant.LOGIN_SESSION_ID).append(":").append(userName).toString();
-    }
-*/
-
     /**
      * 缓存Session
      *
@@ -118,13 +108,14 @@ public class LoginServiceImpl implements LoginService {
         session.setLoginIp(IpAddressUtil.getIpAddr(request));
         session.setLogin(Boolean.TRUE);
         session.setSessionId(sessionId);
+        session.setLoginDate(new Date());
+        session.setAccessTime(new Date());
+        session.setLastUrl(request.getRequestURI());
         // 将sessionId放到cookie中
         CookieUtil.saveSessionIdInCookies(request, response, GlobalConstant.LOGIN_SESSION_ID, sessionId);
         // 缓存session到redis
         redisService.setForStringWithTimeout(sessionId, session);
-
     }
-
 
     /**
      * 验证密码是否正确
@@ -141,7 +132,6 @@ public class LoginServiceImpl implements LoginService {
         return BCrypt.checkpw(sysUser.getPassword(), dbPassword);
     }
 
-
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         // 删除缓存中的session和用户信息
@@ -151,5 +141,52 @@ public class LoginServiceImpl implements LoginService {
         redisService.delete(session.getUserName());
         // 清除cookies中的session
         CookieUtil.clearSessionsFromCookies(request, response);
+    }
+
+    @Override
+    public boolean isLogin(HttpServletRequest request, HttpServletResponse response) {
+        String sid = CookieUtil.getSessionId(request);
+        Session session = getSession(sid);
+        if (session == null || session.getSessionId() == null) {
+            return false;
+        }
+        if (!session.getLogin()) {
+            return false;
+        }
+        if (isTimeOut(session)) {
+            return false;
+        }
+        // 一分钟之前
+        Date lastLoginDate = session.getLoginDate();
+        Calendar aMinuteAgo = Calendar.getInstance();
+        aMinuteAgo.set(Calendar.MINUTE, aMinuteAgo.get(Calendar.MINUTE) - 1);
+        if (lastLoginDate == null || lastLoginDate.before(aMinuteAgo.getTime())) {
+            // 更新session信息
+            session.setAccessIp(IpAddressUtil.getIpAddr(request));
+            session.setAccessTime(Calendar.getInstance().getTime());
+            session.setLastUrl(request.getRequestURI());
+        }
+        // 缓存session
+        redisService.setForStringWithTimeout(sid, session);
+        // sessionId放入添加到cookie
+        CookieUtil.saveSessionIdInCookies(request, response, GlobalConstant.LOGIN_SESSION_ID, session.getSessionId());
+        return true;
+    }
+
+    private Session getSession(String sid) {
+        if (ValidationUtil.isEmptyString(sid)) {
+            return null;
+        }
+        return (Session) redisService.getForString(sid);
+    }
+
+    private Boolean isTimeOut(Session session) {
+        if ((Calendar.getInstance().getTime().getTime()
+                - session.getLoginDate().getTime()) > GlobalConstant.SESSION_TIME_OUT_MS) {
+            redisService.delete(session.getSessionId());
+            redisService.delete(session.getUserName());
+            return true;
+        }
+        return false;
     }
 }

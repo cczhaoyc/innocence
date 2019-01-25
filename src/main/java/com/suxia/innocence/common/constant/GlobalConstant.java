@@ -11,4 +11,6 @@ public class GlobalConstant {
     public static final String LOGIN_SESSION_ID = "login_session_id";
     public static final String OLD_LOGIN_SESSION_ID = "old_login_session_id";
 
+    public static final Long SESSION_TIME_OUT_MS = 2 * 60 * 60 * 1000L;
+
 }

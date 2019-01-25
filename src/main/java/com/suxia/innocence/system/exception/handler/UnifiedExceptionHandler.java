@@ -27,16 +27,18 @@ public class UnifiedExceptionHandler {
      * @param ex
      * @return
      */
-    @ResponseBody
     @ExceptionHandler(value = Exception.class)
+    @ResponseBody
     public ExceptionResult handlerException(Exception ex) {
+        ExceptionResult exceptionResult = null;
         if (ex instanceof BusinessValidationException) {
-            return dealBusinessValidationException(ex);
+            exceptionResult = dealBusinessValidationException(ex);
         } else if (ex instanceof ServiceValidationException) {
-            return dealServiceValidationException(ex);
+            exceptionResult = dealServiceValidationException(ex);
         } else {
-            return dealUnknownException(ex);
+            exceptionResult = dealUnknownException(ex);
         }
+        return exceptionResult;
     }
 
     private ExceptionResult dealBusinessValidationException(Exception ex) {
@@ -65,7 +67,7 @@ public class UnifiedExceptionHandler {
         ExceptionResult result = new ExceptionResult();
         result.setErrCode(ExceptionCode.UNKNOWN_ERR_CODE);
         result.setErrMsg("异常编码:[" + ExceptionCode.UNKNOWN_ERR_CODE
-                + "] 操作失败，请重试或者联系系统相关人员！");
+                + "] 服务器繁忙，请重试或者联系系统相关人员！");
         result.setErrLevel(ExceptionCode.DEFAULT_ERR_LEVEL);
         return result;
     }
