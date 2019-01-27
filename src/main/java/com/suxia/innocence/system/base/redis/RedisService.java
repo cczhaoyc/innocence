@@ -12,14 +12,14 @@ import java.util.concurrent.TimeUnit;
  * @date Created in 2019年01月24 14:21 星期四
  * @description TODO redis工具类
  */
-@Component
+@Component("redisService")
 public class RedisService {
 
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
 
     /**
-     * 默认过期时长，单位：秒
+     * 默认过期时长，单位：毫秒
      */
     public static final Long DEFAULT_EXPIRE = 2 * 60 * 60 * 1000L;
 

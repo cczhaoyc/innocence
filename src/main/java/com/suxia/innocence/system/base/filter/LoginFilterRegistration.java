@@ -1,6 +1,5 @@
 package com.suxia.innocence.system.base.filter;
 
-import com.suxia.innocence.system.base.domain.LoginFilterProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -21,9 +20,9 @@ import java.util.Arrays;
  */
 @Configuration
 @ConditionalOnWebApplication
-public class FilterRegistration extends WebMvcConfigurerAdapter {
+public class LoginFilterRegistration extends WebMvcConfigurerAdapter {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger LOG = LoggerFactory.getLogger(getClass());
 
     @Bean
     @Order(10)
@@ -33,9 +32,9 @@ public class FilterRegistration extends WebMvcConfigurerAdapter {
         bean.setUrlPatterns(Arrays.asList("/*"));
         // 不拦截内部跳转类型请求 DispatcherType.FORWARD, DispatcherType.INCLUDE
         bean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ASYNC, DispatcherType.ERROR);
-        // 将loginFilter加入过滤器链
+        // 注册LoginFilter
         bean.setFilter(loginFilter(loginFilterProperties));
-        logger.debug("FilterRegistrationBean regist [" + LoginFilter.class.getName() + "], with loginFilterProperties: "
+        LOG.debug("FilterRegistrationBean regist [" + LoginFilter.class.getName() + "], with loginFilterProperties: "
                 + loginFilterProperties);
         return bean;
     }

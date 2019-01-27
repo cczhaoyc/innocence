@@ -1,6 +1,6 @@
 ## Innocence project for Spring Boot
 
-### SpringBoot + MyBatis + MySQL
+### SpringBoot + MyBatis + MySQL + Redis + JSP
 
 #### If you have anything to do, please contact us.
 

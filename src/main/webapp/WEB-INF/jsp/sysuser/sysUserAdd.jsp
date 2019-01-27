@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="tokenTag" uri="http://www.suxia.com/token" %>
 <!DOCTYPE html>
 <%-- -------------------------------------------------------------------------------- --%>
 <%-- 通用JS --%>
@@ -25,6 +26,7 @@
 </div>
 <div style="margin-top: 70px">
     <form id="maintainForm" action="/sys/addSysUser" method="post">
+        <tokenTag:token></tokenTag:token>
         <div>
             <i class="iconfont">&#xe66c;</i><span>账号：</span>
             <input class="i-input" id="userName" type="text" name="userName" value="test1"/>

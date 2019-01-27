@@ -1,7 +1,6 @@
 package com.suxia.innocence.system.base.filter;
 
 import com.suxia.innocence.common.util.ValidationUtil;
-import com.suxia.innocence.system.base.domain.LoginFilterProperties;
 import com.suxia.innocence.system.base.service.LoginService;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;

@@ -1,7 +1,6 @@
-package com.suxia.innocence.system.base.domain;
+package com.suxia.innocence.system.base.filter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
