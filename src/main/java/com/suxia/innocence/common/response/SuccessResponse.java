@@ -4,7 +4,7 @@ package com.suxia.innocence.common.response;
  * @author cczhaoyc@163.com
  * @version v_1.0.0
  * @date Created in 2019年01月10 14:58 星期四
- * @description TODO
+ * @description TODO 成功返回
  */
 public class SuccessResponse extends Response {
 

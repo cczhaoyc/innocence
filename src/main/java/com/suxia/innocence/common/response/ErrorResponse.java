@@ -6,7 +6,7 @@ import com.suxia.innocence.system.exception.constant.ExceptionCode;
  * @author cczhaoyc@163.com
  * @version v_1.0.0
  * @date Created in 2019年01月10 14:54 星期四
- * @description TODO
+ * @description TODO 异常返回
  */
 public class ErrorResponse extends Response {
 

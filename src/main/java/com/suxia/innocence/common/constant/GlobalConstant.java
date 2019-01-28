@@ -6,11 +6,11 @@ package com.suxia.innocence.common.constant;
  * @date Created in 2019年01月08 10:27 星期二
  * @description TODO 全局常量
  */
-public class GlobalConstant {
+public interface GlobalConstant {
 
-    public static final String LOGIN_SESSION_ID = "login_session_id";
-    public static final String OLD_LOGIN_SESSION_ID = "old_login_session_id";
+    String LOGIN_SESSION_ID = "login_session_id";
+    String OLD_LOGIN_SESSION_ID = "old_login_session_id";
 
-    public static final Long SESSION_TIME_OUT_MS = 2 * 60 * 60 * 1000L;
+    Long SESSION_TIME_OUT_MS = 2 * 60 * 60 * 1000L;
 
 }

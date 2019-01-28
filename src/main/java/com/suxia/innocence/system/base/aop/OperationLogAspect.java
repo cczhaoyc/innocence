@@ -45,13 +45,11 @@ public class OperationLogAspect {
     private Long startTimeMillis = 0L; // 开始时间
     private Long endTimeMillis = 0L; // 结束时间
     private String errMsg = null;// 异常消息
-    private String success = null;
-
+    private String success = null;// 是否异常
 
     @Pointcut("execution(* com.suxia.innocence.system.*.*.*Controller.*(..))")
     public void doPointcut() {
     }
-
 
     /**
      * 方法调用前触发,记录开始时间
@@ -65,7 +63,6 @@ public class OperationLogAspect {
         startTimeMillis = System.currentTimeMillis(); // 记录方法开始执行的时间
     }
 
-
     /**
      * 方法调用后触发,记录结束时间
      *
@@ -76,7 +73,6 @@ public class OperationLogAspect {
         endTimeMillis = System.currentTimeMillis(); // 记录方法执行完成的时间
         printOperationLog();
     }
-
 
     /**
      * 环绕触发
@@ -113,7 +109,6 @@ public class OperationLogAspect {
         outputParamMap.put("result", result);
         return result;
     }
-
 
     /**
      * 输出日志

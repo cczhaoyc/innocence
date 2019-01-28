@@ -3,7 +3,10 @@ package com.suxia.innocence.common.util;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 获取IP地址
+ * @author cczhaoyc@163.com
+ * @version v_1.0.0
+ * @date Created in 2019年01月23 17:07 星期三
+ * @description TODO 获取IP地址
  */
 public class IpAddressUtil {
 

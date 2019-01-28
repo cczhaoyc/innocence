@@ -15,7 +15,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 汉字转换为拼音
+ * @author cczhaoyc@163.com
+ * @version v_1.0.0
+ * @date Created in 2019年01月23 17:07 星期三
+ * @description TODO 汉字转换为拼音
  */
 public class Chinese2pinyin {
 
