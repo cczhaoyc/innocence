@@ -8,11 +8,12 @@ import com.suxia.innocence.system.sys.domain.SysUser;
 import com.suxia.innocence.system.sys.mapper.SysUserMapper;
 import com.suxia.innocence.system.sys.service.SysUserService;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
 import java.util.Date;
 
 /**
@@ -22,6 +23,10 @@ import java.util.Date;
  * @description TODO 用户表顶级业务接口实现
  */
 @Service("sysUserService")
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
+// REQUIRED:如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
+// DEFAULT:这是默认值，表示使用底层数据库的默认隔离级别。对大部分数据库而言，通常这值就是： READ_COMMITTED 。
+// READ_COMMITTED:该隔离级别表示一个事务只能读取另一个事务已经提交的数据。该级别可以防止脏读，这也是大多数情况下的推荐值。
 public class SysUserServiceImpl implements SysUserService {
 
     @Resource
