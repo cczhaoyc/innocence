@@ -1,6 +1,7 @@
 package com.suxia.innocence.system.sys.service.impl;
 
 import com.suxia.innocence.common.util.ValidationUtil;
+import com.suxia.innocence.system.base.rabbitmq.producer.MessageSender;
 import com.suxia.innocence.system.exception.base.BusinessValidationException;
 import com.suxia.innocence.system.exception.base.ServiceValidationException;
 import com.suxia.innocence.system.sys.constant.SysUserConstant;
@@ -8,6 +9,7 @@ import com.suxia.innocence.system.sys.domain.SysUser;
 import com.suxia.innocence.system.sys.mapper.SysUserMapper;
 import com.suxia.innocence.system.sys.service.SysUserService;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -31,6 +33,8 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Resource
     private SysUserMapper sysUserMapper;
+    @Autowired
+    private MessageSender messageSender;
 
     @Override
     public SysUser addSysUser(SysUser sysUser) {
@@ -50,6 +54,7 @@ public class SysUserServiceImpl implements SysUserService {
             String hashpw = BCrypt.hashpw(sysUser.getPassword(), BCrypt.gensalt(SysUserConstant.GENSALT_DEFAULT_ROUNDS));
             sysUser.setPassword(hashpw);
             sysUserMapper.addSysUser(sysUser);
+            messageSender.send(sysUser);// 发送消息
             return sysUser;
         } catch (Exception e) {
             throw new ServiceValidationException("新增用户出错!", e);
