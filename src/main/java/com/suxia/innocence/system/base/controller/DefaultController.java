@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DefaultController {
 
-
-    /**
-     * 登录页面
-     *
-     * @return
-     */
-    @RequestMapping(value = {"", "/", "/login"})
-    public String login() {
-        return LoginConstant.LOGIN;
-    }
-
+	/**
+	 * 登录页面
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = { "", "/", "/login" })
+	public String login() {
+		return LoginConstant.LOGIN;
+	}
 
 }

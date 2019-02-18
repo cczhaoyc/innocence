@@ -21,31 +21,31 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/loginManager")
 public class LoginController {
 
-    @Autowired
-    private LoginService loginService;
+	@Autowired
+	private LoginService loginService;
 
-    /**
-     * 登录
-     *
-     * @param sysUser
-     * @return
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute SysUser sysUser, HttpServletRequest request, HttpServletResponse response) {
-        return loginService.login(sysUser, request, response);
-    }
+	/**
+	 * 登录
+	 *
+	 * @param sysUser
+	 * @return
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@ModelAttribute SysUser sysUser, HttpServletRequest request, HttpServletResponse response) {
+		return loginService.login(sysUser, request, response);
+	}
 
-    /**
-     * 退出系统
-     *
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = {"/logout"})
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
-        loginService.logout(request, response);
-        return "redirect:/login";
-    }
+	/**
+	 * 退出系统
+	 *
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = { "/logout" })
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		loginService.logout(request, response);
+		return "redirect:/login";
+	}
 
 }

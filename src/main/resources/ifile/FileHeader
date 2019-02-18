@@ -1,8 +1,15 @@
+-----idea----
 /**
  * @date Created in ${YEAR}年${MONTH}月${DAY} ${HOUR}:${MINUTE} ${DAY_NAME_FULL}
  * @author cczhaoyc@163.com
  * @version v_1.0.0
  * @description TODO
  */
-
+-----sts-----
+/**
+ * @date Created in ${date} ${time}
+ * @author cczhaoyc@163.com
+ * @version v_1.0.0
+ * @description TODO
+ */
  1.存在的问题,浏览器关闭在登录时,Session会不停增加,无法删除,除非超时
